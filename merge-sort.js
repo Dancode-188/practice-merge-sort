@@ -12,6 +12,16 @@ function mergeSort(arr) {
 
   // Merge the halves together and return
 
+  if (arr.length <= 1) return;
+
+  let mid = Math.floor(arr.length / 2);
+  let left = arr.slice(0, mid);
+  let right = arr.slice(mid);
+
+  mergeSort(left);
+  mergeSort(right);
+
+  return merge(left, right);
 }
 
 
@@ -27,6 +37,21 @@ function merge(arrA, arrB) {
     // Move the pointer to the next value in that array
 
   // Return the return array
+
+  let arr = [];
+  let a = 0;
+  let b = 0;
+
+  while (a < arrA.length && b < arrB.length) {
+    if (arrA[a] < arrB[b]) {
+      arr.push(arrA[a]);
+      a++;
+    } else {
+      arr.push(arrB[b]);
+      b++;
+    }
+  }
+  return arr.concat(arrA.slice(a).concat(arrB.slice(b)));
 
 }
 
